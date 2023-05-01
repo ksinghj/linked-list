@@ -9,29 +9,28 @@ class ListNode<T> {
   }
 }
 
-class LinkedList<ListNode> {
-  head: ListNode | null;
-  // tail: ListNode | null;
-  currentSize: number = 0;
+class LinkedList<T> {
+  head: ListNode<T> | null
+  // tail: ListNode<T> | null;
+  currentSize: number
 
-  constructor(head?: ListNode) {
-    this.head = head ? head : null;
+  constructor(head?: ListNode<T>) {
+    this.head = head ? head : null
     // TODO: calc length on init
+    this.currentSize = !!this.head ? 1 : 0
   }
 
-  addFirst(newNode: ListNode) {
-    newNode.next = this.head;
-    this.head = newNode;
-    this.currentSize += 1;
+  addFirst(newNode: ListNode<T>) {
+    newNode.next = this.head
+    this.head = newNode
+    this.currentSize += 1
   }
 }
 
-const myNode = new ListNode("a");
-const myNewNode = new ListNode("b");
+const myNode = new ListNode('a')
+const myNewNode = new ListNode('b')
 
-const myList = new LinkedList(myNode);
-
-console.log({ myNode, myList }, myNode.next);
+const myList = new LinkedList(myNode)
 
 myList.addFirst(myNewNode);
 
