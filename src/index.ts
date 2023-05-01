@@ -11,24 +11,31 @@ class ListNode<T> {
 
 class LinkedList<T> {
   head: ListNode<T> | null
-  // tail: ListNode<T> | null;
+  tail: ListNode<T> | null
   currentSize: number
 
   constructor(head?: ListNode<T>) {
     this.head = head ? head : null
+    this.tail = head ? head : null
     // TODO: calc length on init
     this.currentSize = !!this.head ? 1 : 0
+
+    // 🤔
+    while (this.tail?.next !== null) {
+      this.tail = this.tail?.next
+    }
   }
 
-  addFirst(newNode: ListNode<T>) {
-    newNode.next = this.head
-    this.head = newNode
+  addFirst(node: ListNode<T>) {
+    node.next = this.head
+    this.head = node
     this.currentSize += 1
   }
 
-  addLast(newNode: ListNode<T>) {
+  // O(n)
+  addLastTemp(node: ListNode<T>) {
     if (this.head === null) {
-      this.addFirst(newNode)
+      this.addFirst(node)
       return
     }
 
@@ -36,7 +43,21 @@ class LinkedList<T> {
     while (tmp.next !== null) {
       tmp = tmp.next
     }
-    tmp.next = newNode
+    tmp.next = node
+
+    this.currentSize += 1
+  }
+
+  // O(1)
+  addLast(node: ListNode<T>) {
+    if (this.head === null) {
+      this.addFirst(node)
+      this.tail = node
+      return
+    }
+
+    this.tail!.next = node
+    this.tail = node
     this.currentSize += 1
   }
 }
