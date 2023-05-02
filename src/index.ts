@@ -125,6 +125,23 @@ class LinkedList<T> {
 
     this.currentSize -= 1
   }
+
+  contains(node: ListNode<T>): boolean {
+    if (this.head === null) return false
+
+    let prev = null
+    let curr = this.head
+    while (curr.next !== null) {
+      if (_.isEqual(curr, node)) {
+        return true
+      }
+
+      prev = curr
+      curr = curr.next
+    }
+
+    return false
+  }
 }
 
 const myNode = new ListNode('a')
@@ -142,3 +159,4 @@ myList.addLast(anotherNode)
 myList.findAndRemove(anotherNode)
 
 console.log(myList)
+console.log(myList.contains(kNode))
