@@ -20,8 +20,9 @@ class LinkedList<T> {
     // TODO: calc length on init
     this.currentSize = !!this.head ? 1 : 0
 
-    // 🤔
-    while (this.tail?.next !== null) {
+    if (!this.tail) return
+    // init tail pointer
+    while (this.tail.next !== null) {
       this.tail = this.tail?.next
     }
   }
@@ -60,6 +61,39 @@ class LinkedList<T> {
     this.tail = node
     this.currentSize += 1
   }
+
+  removeFirst() {
+    if (!this.head) return
+
+    this.currentSize -= 1
+
+    if (this.head === this.tail) {
+      this.head = this.tail = null
+      return
+    }
+
+    this.head = this.head.next
+  }
+
+  removeLast() {
+    if (!this.head) return
+
+    this.currentSize -= 1
+
+    if (this.head === this.tail) {
+      this.removeFirst()
+      return
+    }
+
+    let curr = this.head
+    let prev = null
+    while (curr.next !== null) {
+      prev = curr
+      curr = curr.next
+    }
+    this.tail = prev
+    this.tail!.next = null
+  }
 }
 
 const myNode = new ListNode('a')
@@ -70,5 +104,7 @@ const myList = new LinkedList(myNode)
 
 myList.addFirst(myNewNode)
 myList.addLast(anotherNode)
+myList.removeFirst()
+myList.removeLast()
 
 console.log(myList)
