@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 // LinkedList practice
 class ListNode<T> {
   data: T | null
@@ -59,6 +61,7 @@ class LinkedList<T> {
 
     this.tail!.next = node
     this.tail = node
+
     this.currentSize += 1
   }
 
@@ -94,17 +97,48 @@ class LinkedList<T> {
     this.tail = prev
     this.tail!.next = null
   }
+
+  findAndRemove(node: ListNode<T>) {
+    if (!this.head) return
+
+    if (this.head === this.tail || _.isEqual(this.head, node)) {
+      this.removeFirst()
+      return
+    }
+
+    if (_.isEqual(this.tail, node)) {
+      this.removeLast()
+      return
+    }
+
+    let prev = null
+    let curr = this.head
+    while (curr.next !== null) {
+      if (_.isEqual(curr, node)) {
+        prev!.next = curr.next
+        break
+      }
+
+      prev = curr
+      curr = curr.next
+    }
+
+    this.currentSize -= 1
+  }
 }
 
 const myNode = new ListNode('a')
 const myNewNode = new ListNode('b')
 const anotherNode = new ListNode('c')
+const kNode = new ListNode('k')
 
 const myList = new LinkedList(myNode)
 
 myList.addFirst(myNewNode)
+myList.addFirst(kNode)
 myList.addLast(anotherNode)
-myList.removeFirst()
-myList.removeLast()
+// myList.removeFirst()
+// myList.removeLast()
+myList.findAndRemove(anotherNode)
 
 console.log(myList)
