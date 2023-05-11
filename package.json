@@ -1,19 +1,30 @@
 {
-  "name": "typescript",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.html",
+  "name": "linked-list-ksinghj",
+  "version": "1.0.2",
+  "description": "Linked list in Typescript from the Rob Edwards video lectures - to be used for other data structures like hashes.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "prepublish": "npx tsc",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html"
+    "publish": "npm publish",
+    "build": "npx tsc"
   },
   "dependencies": {
     "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.194",
-    "parcel-bundler": "^1.6.1",
     "typescript": "^5.0.4"
   },
-  "keywords": []
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksinghj/linked-list.git"
+  },
+  "author": "Kartar Singh Jabanda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ksinghj/linked-list/issues"
+  },
+  "homepage": "https://github.com/ksinghj/linked-list#readme"
 }

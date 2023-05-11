@@ -1,7 +1,6 @@
 import _ from 'lodash'
 
-// LinkedList practice
-class ListNode<T> {
+export class ListNode<T> {
   data: T | null
   next: ListNode<T> | null
 
@@ -11,7 +10,7 @@ class ListNode<T> {
   }
 }
 
-class LinkedList<T> {
+export class LinkedList<T> {
   head: ListNode<T> | null
   tail: ListNode<T> | null
   currentSize: number
@@ -143,20 +142,3 @@ class LinkedList<T> {
     return false
   }
 }
-
-const myNode = new ListNode('a')
-const myNewNode = new ListNode('b')
-const anotherNode = new ListNode('c')
-const kNode = new ListNode('k')
-
-const myList = new LinkedList(myNode)
-
-myList.addFirst(myNewNode)
-myList.addFirst(kNode)
-myList.addLast(anotherNode)
-// myList.removeFirst()
-// myList.removeLast()
-myList.findAndRemove(anotherNode)
-
-console.log(myList)
-console.log(myList.contains(kNode))
