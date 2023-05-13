@@ -22,13 +22,16 @@ export class LinkedList<T> {
     this.currentSize = !!this.head ? 1 : 0
 
     if (!this.tail) return
-    // init tail pointer
+    // init tail pointer to end of list
     while (this.tail.next !== null) {
       this.tail = this.tail?.next
     }
   }
 
   addFirst(node: ListNode<T>) {
+    if (this.tail === null) {
+      this.tail = node
+    }
     node.next = this.head
     this.head = node
     this.currentSize += 1
@@ -54,11 +57,10 @@ export class LinkedList<T> {
   addLast(node: ListNode<T>) {
     if (this.head === null) {
       this.addFirst(node)
-      this.tail = node
       return
     }
 
-    this.tail!.next = node
+    if (this.tail) this.tail.next = node
     this.tail = node
 
     this.currentSize += 1
@@ -129,9 +131,9 @@ export class LinkedList<T> {
     if (this.head === null) return false
 
     let prev = null
-    let curr = this.head
-    while (curr.next !== null) {
-      if (_.isEqual(curr, node)) {
+    let curr: ListNode<T> | null = this.head
+    while (curr) {
+      if (_.isEqual(curr.data, node.data)) {
         return true
       }
 

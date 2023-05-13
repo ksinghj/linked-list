@@ -6,7 +6,7 @@ I made it available as an npm module to be used in further practice repos for th
 
 https://www.npmjs.com/package/linked-list-ksinghj
 
-## Installation 
+## Installation
 
 ### Yarn
 
